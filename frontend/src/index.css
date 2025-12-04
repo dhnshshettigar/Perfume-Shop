@@ -12,4 +12,31 @@
   transition-property: max-height;
   transition-timing-function: ease;
 }
+html, body, #root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ensure app/main containers are full width */
+.app, main, .app > div, .app > main {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ensure full-bleed hero & navbar wrappers can't be constrained */
+.w-full, .max-w-7xl, .mx-auto {
+  max-width: 100% !important;
+}
+
+body {
+  margin: 0; /* ensure no default 8px offset */
+}
+
+/* footer input safe shrink */
+footer input[type="email"] {
+  min-width: 0;
+}
+
 

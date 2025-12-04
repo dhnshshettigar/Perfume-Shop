@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../api';
 import ProductCard from '../shared/ProductCard';
 
+const HERO_IMG = 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1920&q=80&auto=format&fit=crop'; // swap if you want
+
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,41 +28,61 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold">Perfume Shop</h1>
-        <nav className="flex items-center gap-4 text-sm">
-          <a href="/" className="text-gray-700 hover:text-primary">Home</a>
-          <a href="#collections" className="text-gray-700 hover:text-primary">Collections</a>
-        </nav>
-      </header>
+    <main className="min-h-screen bg-gray-50 w-full">
+      {/* FULL-BLEED HERO */}
+      <section className="w-full relative">
+        {/* background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${HERO_IMG})` }}
+          aria-hidden="true"
+        />
 
-      <section className="max-w-6xl mx-auto px-4">
-        <div className="rounded-2xl p-8 bg-gradient-to-r from-bannerStart to-bannerEnd text-primary mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold">Discover our latest collection</h2>
-            <p className="text-sm mt-1">Handpicked fragrances — limited offers available.</p>
-          </div>
-          <div>
-            <a href="#products" className="btn bg-primary text-white">Explore collections</a>
+        {/* gradient overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" aria-hidden="true" />
+
+        {/* inner centered content (matches navbar/footer alignment) */}
+        <div className="relative">
+          <div className="max-w-7xl mx-auto px-6 h-[65vh] flex items-center">
+            <div className="text-white md:text-left text-center">
+              <h1 className="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-md max-w-3xl">
+                Discover Luxury Fragrances
+              </h1>
+
+              <p className="mt-4 text-lg md:text-2xl text-white/90 max-w-2xl drop-shadow-sm">
+                Premium, long-lasting perfumes crafted for elegance and confidence.
+              </p>
+
+              <div className="mt-8 flex justify-center md:justify-start gap-4">
+                <a
+                  href="#products"
+                  className="inline-block px-10 py-4 text-lg bg-white text-primary rounded-lg shadow-lg hover:shadow-xl transition"
+                >
+                  Explore Collection
+                </a>
+
+            
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <section id="products">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold">Featured perfumes</h3>
-            <div className="text-sm text-gray-500">{products.length} items</div>
-          </div>
+      {/* PRODUCTS SECTION (aligned to same inner container) */}
+      <section id="products" className="max-w-7xl mx-auto px-6 mt-12 pb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-2xl font-semibold text-gray-900">Featured perfumes</h3>
+          <div className="text-sm text-gray-500">{products.length} items</div>
+        </div>
 
-          {loading && <p>Loading products...</p>}
-          {error && <p className="text-red-500">{error}</p>}
+        {loading && <p>Loading products...</p>}
+        {error && <p className="text-red-500">{error}</p>}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map(product => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-        </section>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 w-full">
+          {products.map(product => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
       </section>
     </main>
   );

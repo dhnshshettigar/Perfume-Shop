@@ -88,7 +88,7 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="mb-6 flex items-center justify-between">
           <Link to="/" className="text-sm text-gray-600 hover:text-primary">← Back to home</Link>
           <div className="text-sm text-gray-500">SKU: <span className="font-medium">#{product._id.slice(-6)}</span></div>
