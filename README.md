@@ -141,7 +141,7 @@ Backend runs at:
 ### 7️⃣ Install dependencies
 
 ```bash
-cd ../client
+cd ../frontend
 npm install
 ```
 
